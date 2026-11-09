@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electrical and Solar Services in Durban | Open Circuit</title>
+    <meta name="description" content="Open Circuit provides electrical repairs, solar installation and backup power services for homes and businesses in Durban.">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="electrician Durban, electrical repairs Durban, solar installation Durban, backup power Durban, Glenwood electrical contractor">
+    <meta property="og:site_name" content="Open Circuit Electrical and Solar">
+    <meta property="og:locale" content="en_ZA">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Electrical and Solar Services in Durban | Open Circuit">
+    <meta name="twitter:description" content="Open Circuit provides electrical repairs, solar installation and backup power services for homes and businesses in Durban.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Electrical and Solar Services in Durban | Open Circuit">
+    <meta property="og:description" content="Open Circuit provides electrical repairs, solar installation and backup power services for homes and businesses in Durban.">
+    <meta name="theme-color" content="#0b1f3a">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Electrician",
+      "name": "Open Circuit Electrical and Solar",
+      "description": "Electrical repairs, installations, solar and backup power services in Durban.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Glenwood, Durban",
+        "addressRegion": "KwaZulu-Natal",
+        "addressCountry": "ZA"
+      },
+      "areaServed": { "@type": "City", "name": "Durban" },
+      "openingHours": "Mo-Sa 07:00-17:00"
+    }
+    </script>
+
+    <!--Google Fonts: Montserrat for headings, Open Sans for body text-->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+    <!--link to the external stylesheet, shared by every page-->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!--header: top of the page, contains the business name and main navigation-->
+    <header>
+
+        <a class="brand-lockup" href="index.html" aria-label="Open Circuit Electrical and Solar home">
+            <img class="brand-mark" src="images/open-circuit-logo.svg" alt="" width="56" height="56" fetchpriority="high">
+            <span class="brand-name">Open Circuit Electrical and Solar</span>
+        </a>
+        <p>Reliable electrical and solar solutions in Durban</p>
+
+        <!--nav: main navigation menu, links to the other pages-->
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="enquiry.html">Enquiry</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <!--main: the main content of the page, should only appear once-->
+    <main id="home-main">
+
+        <!--section: intro paragraph about the business-->
+        <section id="intro">
+            <h1>Electrical and Solar Services in Durban</h1>
+            <p>
+                From everyday repairs to full solar and backup power installations,
+                Open Circuit Electrical and Solar keeps Durban homes and businesses
+                safely powered, with neat, tidy work and clear communication.
+            </p>
+            <p><a href="enquiry.html">Request a service quote</a></p>
+            <p><a href="enquiry.html#enquiry-category">Send a general message</a></p>
+        </section>
+
+        <!--section: short overview of the services offered-->
+        <section id="services-overview">
+            <h2>What We Do</h2>
+
+            <!--article: each service is its own self-contained piece of content-->
+            <article>
+                <h3>Electrical Repairs</h3>
+                <p>Fault finding, rewiring, and quick, safe fixes for homes and businesses.</p>
+            </article>
+
+            <article>
+                <h3>Installations &amp; DB Boards</h3>
+                <p>New wiring and distribution board upgrades, done neatly.</p>
+            </article>
+
+            <article>
+                <h3>Solar &amp; Backup Power</h3>
+                <p>Solar panel systems and backup power to help with load-shedding.</p>
+            </article>
+
+            <p><a href="services.html">See all services</a></p>
+        </section>
+
+        <!--section: a small preview of finished jobs-->
+        <section id="gallery-preview">
+            <h2>Recent Work</h2>
+
+            <!--figure/figcaption pairs for photos of finished jobs (photos to be added)-->
+
+            <!--this first photo uses picture + srcset so a larger image loads on
+                bigger screens and a smaller one loads on mobile, to keep the
+                site responsive and save data on phones-->
+            <figure>
+                <picture>
+                
+                    <img loading="lazy" decoding="async" src="images/db.jpg"
+
+                     alt="DB board upgrade in Glenwood">
+                </picture>
+                <figcaption>DB board upgrade - Glenwood</figcaption>
+            </figure>
+
+            <figure>
+                <img loading="lazy" decoding="async" src="images/rooftop_solar.jpg" alt="Rooftop solar install in Durban North">
+                <figcaption>Rooftop solar install - Durban North</figcaption>
+            </figure>
+
+            <figure>
+                <img loading="lazy" decoding="async" src="images/rewiring.jpg" alt="Full home rewire in Westville">
+                <figcaption>Full home rewire - Westville</figcaption>
+            </figure>
+
+            <p><a href="gallery.html">See the full gallery</a></p>
+        </section>
+
+        <section id="power-tips" aria-labelledby="tips-heading">
+            <h2 id="tips-heading">Helpful Power Tips</h2>
+            <p>Quick, practical guidance for planning electrical and backup-power work.</p>
+            <div id="tips-list" class="tips-list" aria-live="polite">
+                <p>Tips are loading…</p>
+            </div>
+        </section>
+        <!--section: a few customer testimonials-->
+        <section id="testimonials">
+            <h2>What Customers Say</h2>
+
+            <article>
+                <p>"Neat, tidy work and they explained everything clearly before starting."</p>
+                <p>- Homeowner, Glenwood</p>
+            </article>
+
+            <article>
+                <p>"Our solar install has made load-shedding a non-issue."</p>
+                <p>- Small business owner, Durban North</p>
+            </article>
+        </section>
+
+    </main>
+
+    <!--footer: bottom of the page, contact details and copyright-->
+    <footer>
+        <p>Open Circuit Electrical and Solar, Glenwood, Durban</p>
+        <p>Mon-Sat: 07:00-17:00</p>
+        <p>&copy; 2026 Open Circuit Electrical and Solar</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" defer></script>
+    <script src="./js/jquery-features.js" defer></script>
+    <script src="./js/site.js" defer></script>
+</body>
+</html>
