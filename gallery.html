@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electrical and Solar Gallery | Open Circuit Durban</title>
+    <meta name="description" content="View electrical, solar and backup-power project examples for homes and businesses around Durban.">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="electrical projects Durban, solar installation gallery Durban, backup power Durban">
+    <meta property="og:site_name" content="Open Circuit Electrical and Solar">
+    <meta property="og:locale" content="en_ZA">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Electrical and Solar Gallery | Open Circuit Durban">
+    <meta name="twitter:description" content="View electrical, solar and backup-power project examples for homes and businesses around Durban.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Electrical and Solar Gallery | Open Circuit Durban">
+    <meta property="og:description" content="View electrical, solar and backup-power project examples for homes and businesses around Durban.">
+    <meta name="theme-color" content="#0b1f3a">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!--Google Fonts: Montserrat for headings, Open Sans for body text-->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+    <!--link to the external stylesheet, shared by every page-->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!--header: top of the page, contains the business name and main navigation-->
+    <header>
+
+        <a class="brand-lockup" href="index.html" aria-label="Open Circuit Electrical and Solar home">
+            <img class="brand-mark" src="images/open-circuit-logo.svg" alt="" width="56" height="56" fetchpriority="high">
+            <span class="brand-name">Open Circuit Electrical and Solar</span>
+        </a>
+        <!--nav: main navigation menu, links to the other pages-->
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="enquiry.html">Enquiry</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <!--main: the main content of the page-->
+    <main id="gallery-main">
+
+        <h1>Electrical and Solar Project Gallery</h1>
+        <p>
+            A selection of completed jobs across Durban. Photos will be added
+            here as each project is finished.
+        </p>
+
+        <!-- Interactive category filters progressively enhance the project gallery. -->
+        <div class="gallery-controls" role="group" aria-label="Filter projects by category">
+            <button type="button" data-gallery-filter="all" class="is-active" aria-pressed="true">All projects</button>
+            <button type="button" data-gallery-filter="electrical" aria-pressed="false">Electrical</button>
+            <button type="button" data-gallery-filter="solar" aria-pressed="false">Solar &amp; backup</button>
+            <p id="gallery-status" aria-live="polite">7 projects shown.</p>
+        </div>
+        <!--section: gallery of finished jobs, each photo uses figure/figcaption-->
+        <section id="gallery" aria-labelledby="gallery-heading">
+            <h2 id="gallery-heading">Project Photos</h2>
+
+            <figure data-category="electrical">
+                <img loading="lazy" decoding="async" src="images/db.jpg" alt="DB board upgrade in Glenwood">
+                <figcaption>DB board upgrade - Glenwood</figcaption>
+            </figure>
+
+            <figure data-category="solar">
+                <img loading="lazy" decoding="async" src="images/rooftop_solar.jpg" alt="Rooftop solar install in Durban North">
+                <figcaption>Rooftop solar install - Durban North</figcaption>
+            </figure>
+
+            <figure data-category="electrical">
+                <img loading="lazy" decoding="async" src="images/home-rewire-gallery.jpg" alt="Electrician carrying out a home rewiring installation">
+                <figcaption>Full home rewire - Westville</figcaption>
+            </figure>
+
+            <figure data-category="solar">
+    <img loading="lazy" decoding="async" src="images/back_up_power_setup.jpg" alt="Electrician wiring a battery and inverter backup power system, with rooftop solar panels in the background">
+    <figcaption>Backup power setup - Berea</figcaption>
+</figure>
+
+            <figure data-category="solar">
+                <img loading="lazy" decoding="async" src="images/solar-panel-installation-gallery.jpg" alt="Two solar technicians installing rooftop solar panels">
+                <figcaption>Rooftop solar panel installation</figcaption>
+            </figure>
+
+            <figure data-category="electrical">
+                <img loading="lazy" decoding="async" src="images/solar-light.jpg" alt="Outdoor lighting installation in Morningside">
+                <figcaption>Outdoor lighting - Morningside</figcaption>
+            </figure>
+
+            <figure data-category="electrical">
+                <img loading="lazy" decoding="async" src="images/socket.jpg" alt="Socket and switch repairs in Kloof">
+                <figcaption>Socket &amp; switch repairs - Kloof</figcaption>
+            </figure>
+
+        </section>
+
+        <dialog id="gallery-lightbox" aria-label="Project photo viewer">
+            <div class="lightbox-toolbar">
+                <p id="lightbox-caption" aria-live="polite"></p>
+                <button type="button" id="lightbox-close" aria-label="Close photo viewer">Close</button>
+            </div>
+            <div class="lightbox-image-wrap">
+                <button type="button" id="lightbox-prev" aria-label="Previous photo">Previous</button>
+                <img loading="lazy" decoding="async" id="lightbox-image" src="" alt="">
+                <button type="button" id="lightbox-next" aria-label="Next photo">Next</button>
+            </div>
+        </dialog>
+    </main>
+
+    <!--footer: bottom of the page, contact details and copyright-->
+    <footer>
+        <p>Open Circuit Electrical and Solar, Glenwood, Durban</p>
+        <p>Mon-Sat: 07:00-17:00</p>
+        <p>&copy; 2026 Open Circuit Electrical and Solar</p>
+    </footer>
+
+    <script src="./js/site.js" defer></script>
+</body>
+</html>
