@@ -71,3 +71,214 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!image.alt.toLowerCase().includes('placeholder')) image.alt += ' (illustrative placeholder; replace with project photo)';
         });
     });
+
+    // Cache searchable text/titles once; typing only toggles visibility, while sorting reorders once.
+    const serviceSections = [...document.querySelectorAll('#services-main > section[id]:not(#service-faq)')];
+    const searchField = document.querySelector('#service-search');
+    const sortField = document.querySelector('#service-sort');
+    const resultLabel = document.querySelector('#service-results');
+    if (serviceSections.length && searchField && sortField) {
+        const featuredOrder = serviceSections.map((section) => ({
+            section,
+            title: section.querySelector('h2, h3')?.textContent.trim() || '',
+            searchText: section.textContent.toLowerCase()
+        }));
+        const alphabeticalOrder = [...featuredOrder].sort((a, b) => a.title.localeCompare(b.title));
+        let appliedOrder = featuredOrder;
+        const applyVisibility = () => {
+            const query = searchField.value.trim().toLowerCase();
+            let shown = 0;
+            appliedOrder.forEach(({ section, searchText }) => {
+                const matches = searchText.includes(query);
+                section.hidden = !matches;
+                if (matches) shown += 1;
+            });
+            if (resultLabel) resultLabel.textContent = `Showing ${shown} of ${appliedOrder.length} ${appliedOrder.length === 1 ? 'service' : 'services'}.`;
+        };
+        const applySort = () => {
+            const nextOrder = sortField.value === 'az' ? alphabeticalOrder : featuredOrder;
+            if (nextOrder !== appliedOrder) {
+                const fragment = document.createDocumentFragment();
+                nextOrder.forEach(({ section }) => fragment.append(section));
+                const faq = document.querySelector('#service-faq');
+                if (faq) faq.parentNode.insertBefore(fragment, faq);
+                appliedOrder = nextOrder;
+            }
+            applyVisibility();
+        };
+        searchField.addEventListener('input', applyVisibility);
+        sortField.addEventListener('change', applySort);
+    }
+
+    // Dynamically render helpful content from a local data array (no external API needed).
+    const tipsHost = document.querySelector('#tips-list');
+    if (tipsHost) {
+        const tips = [
+            { title: 'Know what needs power', body: 'List the essential lights, appliances and devices you want to keep running before discussing a backup system.' },
+            { title: 'Take note of repeat faults', body: 'Record which breaker trips, when it happens and any affected rooms; those details can help an electrician investigate.' },
+            { title: 'Plan for safe access', body: 'Keep the distribution board and work area clear so an electrician can inspect and work safely.' }
+        ];
+        const fragment = document.createDocumentFragment();
+        tips.forEach((tip) => {
+            const article = document.createElement('article');
+            article.className = 'tip-card reveal';
+            const heading = document.createElement('h3');
+            heading.textContent = tip.title;
+            const paragraph = document.createElement('p');
+            paragraph.textContent = tip.body;
+            article.append(heading, paragraph);
+            fragment.append(article);
+        });
+        tipsHost.replaceChildren(fragment);
+    }
+
+    // Gallery filters and live result count.
+    const gallery = document.querySelector('#gallery');
+    const filterButtons = document.querySelectorAll('[data-gallery-filter]');
+    if (gallery && filterButtons.length) {
+        const figures = [...gallery.querySelectorAll('figure[data-category]')];
+        filterButtons.forEach((button) => button.addEventListener('click', () => {
+            const selected = button.dataset.galleryFilter;
+            filterButtons.forEach((item) => {
+                const active = item === button;
+                item.classList.toggle('is-active', active);
+                item.setAttribute('aria-pressed', String(active));
+            });
+            figures.forEach((figure) => { figure.hidden = selected !== 'all' && figure.dataset.category !== selected; });
+            const count = figures.filter((figure) => !figure.hidden).length;
+            const status = document.querySelector('#gallery-status');
+            if (status) status.textContent = `${count} ${count === 1 ? 'project' : 'projects'} shown.`;
+        }));
+    }
+
+    // Accessible image lightbox supports buttons, Escape, and left/right arrow keys.
+    const dialog = document.querySelector('#gallery-lightbox');
+    if (dialog && gallery) {
+        const photoFigures = [...gallery.querySelectorAll('figure[data-category]')];
+        const largeImage = dialog.querySelector('#lightbox-image');
+        const caption = dialog.querySelector('#lightbox-caption');
+        let activeIndex = 0;
+        let opener = null;
+        let closeTimer = 0;
+        let isClosing = false;
+        const closeLightbox = () => {
+            if (!dialog.open || isClosing) return;
+            if (!motionOK) { dialog.close(); return; }
+            isClosing = true;
+            dialog.classList.add('is-closing');
+            closeTimer = window.setTimeout(() => {
+                if (dialog.open) dialog.close();
+            }, 240);
+        };
+        const visibleFigures = () => photoFigures.filter((figure) => !figure.hidden);
+        const showPhoto = (index) => {
+            const visible = visibleFigures();
+            if (!visible.length) return;
+            activeIndex = (index + visible.length) % visible.length;
+            const figure = visible[activeIndex];
+            const image = figure.querySelector('img');
+            const changedPhoto = dialog.open && largeImage.src && largeImage.src !== image.src;
+            largeImage.src = image.src;
+            largeImage.alt = image.alt;
+            caption.textContent = `${figure.querySelector('figcaption')?.textContent || image.alt} — ${activeIndex + 1} of ${visible.length}`;
+            if (changedPhoto && motionOK && typeof largeImage.animate === 'function') {
+                largeImage.animate(
+                    [{ opacity: 0.55, transform: 'scale(0.985)' }, { opacity: 1, transform: 'scale(1)' }],
+                    { duration: 220, easing: 'cubic-bezier(0.2, 0.7, 0.2, 1)' }
+                );
+            }
+        };
+        photoFigures.forEach((figure, index) => {
+            const image = figure.querySelector('img');
+            image.tabIndex = 0;
+            image.setAttribute('role', 'button');
+            image.setAttribute('aria-label', `Enlarge: ${figure.querySelector('figcaption')?.textContent || image.alt}`);
+            const open = () => {
+                opener = image;
+                showPhoto(visibleFigures().indexOf(figure));
+                if (!dialog.open) dialog.showModal();
+                dialog.querySelector('#lightbox-close').focus();
+            };
+            image.addEventListener('click', open);
+            image.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); open(); }
+            });
+        });
+        dialog.querySelector('#lightbox-close').addEventListener('click', closeLightbox);
+        dialog.querySelector('#lightbox-prev').addEventListener('click', () => showPhoto(activeIndex - 1));
+        dialog.querySelector('#lightbox-next').addEventListener('click', () => showPhoto(activeIndex + 1));
+        dialog.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowLeft') showPhoto(activeIndex - 1);
+            if (event.key === 'ArrowRight') showPhoto(activeIndex + 1);
+        });
+        dialog.addEventListener('cancel', (event) => { event.preventDefault(); closeLightbox(); });
+        dialog.addEventListener('click', (event) => { if (event.target === dialog) closeLightbox(); });
+        dialog.addEventListener('close', () => {
+            window.clearTimeout(closeTimer);
+            dialog.classList.remove('is-closing');
+            isClosing = false;
+            if (opener) opener.focus();
+        });
+    }
+
+    // Native details remain functional without JS; when JS runs, keep one FAQ open at a time.
+    const faqItems = document.querySelectorAll('#service-faq details');
+    faqItems.forEach((item) => item.addEventListener('toggle', () => {
+        if (item.open) faqItems.forEach((other) => { if (other !== item) other.open = false; });
+    }));
+
+    // Shared client-side validation and delivery for general messages and service enquiries.
+    const serviceGuidance = {
+        'electrical-repairs': 'Electrical repair costs depend on the fault, access and parts needed; diagnosis is required before a reliable quote.',
+        installation: 'Installation and DB-board costs depend on the site, circuits and compliance work; an assessment is needed for an accurate quote.',
+        solar: 'Solar system cost and availability depend on energy use, roof/site conditions and equipment choice; the team must assess your requirements.',
+        backup: 'Backup-power costs depend on which loads you need to run and for how long; system sizing should be confirmed after discussing your needs.',
+        product: 'Product pricing and stock availability can change. Ask for a current quote and confirmation before making a purchase decision.',
+        sponsorship: 'Sponsorship or volunteer requests need to be reviewed individually; include the organisation, dates and support requested.',
+        other: 'Please include the work location and the outcome you are looking for so the team can advise on next steps.'
+    };
+    const config = window.OPEN_CIRCUIT_FORM_CONFIG || {};
+    document.querySelectorAll('form[data-form-kind]').forEach((form) => {
+        const kind = form.dataset.formKind;
+        const isEnquiry = kind === 'enquiry';
+        const phone = form.querySelector('[type="tel"]');
+        const message = form.querySelector('textarea[name="message"]');
+        const status = form.querySelector('.form-status');
+        const response = document.querySelector('#enquiry-response');
+        const counter = document.querySelector(isEnquiry ? '#enquiry-message-count' : '#message-count');
+        const counterUpdate = () => { if (counter && message) counter.textContent = `${message.value.length}/${isEnquiry ? 1000 : 500} characters`; };
+        if (message && counter) message.addEventListener('input', counterUpdate);
+        counterUpdate();
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            if (status) { status.textContent = ''; status.className = 'form-status'; }
+            if (response) { response.hidden = true; response.textContent = ''; }
+            if (phone) {
+                phone.setCustomValidity('');
+                const normalized = phone.value.replace(/[\s()-]/g, '');
+                if (normalized && !/^(?:(?:\+27|0027)\d{9}|0\d{9})$/.test(normalized)) {
+                    phone.setCustomValidity('Enter a valid South African number, for example 082 123 4567 or +27 82 123 4567.');
+                    phone.reportValidity(); phone.focus(); return;
+                }
+            }
+            if (message && message.value.trim().length < 10) {
+                message.setCustomValidity('Please enter at least 10 characters so we can understand your message.');
+                message.reportValidity(); message.focus(); return;
+            }
+            if (message) message.setCustomValidity('');
+            if (!form.reportValidity()) return;
+
+            const categoryField = form.querySelector('[name="category"]');
+            const category = categoryField?.value || 'other';
+            if (isEnquiry && response) {
+                if (category === 'general') {
+                    response.textContent = 'General message selected. Please include enough detail for the team to understand how they can help; this is not a service quote.';
+                } else {
+                    const guidance = serviceGuidance[category] || serviceGuidance.other;
+                    response.textContent = `Enquiry guidance: ${guidance} This is general guidance, not a quote or a confirmation of stock or appointment availability.`;
+                }
+                response.hidden = false;
+            }
+
+            // Google Forms delivery: posts to the form's formResponse URL in the background.
