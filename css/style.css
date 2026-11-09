@@ -241,3 +241,27 @@ footer p {
 
 /* --------------------------------------------------------------------------
    5. About page layout (about.html)
+#why-choose-us table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+}
+
+#why-choose-us th,
+#why-choose-us td {
+    padding: 0.6rem 0.9rem;
+    text-align: left;
+    border: 1px solid #dfe6ec;
+}
+
+#why-choose-us th {
+    background-color: #0b1f3a;
+    color: #ffffff;
+    font-family: 'Montserrat', Arial, sans-serif;
+}
+
+#why-choose-us tr:nth-child(even) {
+    background-color: #f0f3f6;
+}
+
+
