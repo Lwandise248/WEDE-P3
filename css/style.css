@@ -303,3 +303,564 @@ footer p {
 
 
 /* --------------------------------------------------------------------------
+   7. Gallery page layout (gallery.html)
+   -------------------------------------------------------------------------- */
+
+#gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+#gallery figure {
+    flex: 1 1 260px;
+    background-color: #ffffff;
+    border: 1px solid #dfe6ec;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#gallery img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+#gallery figcaption {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+    color: #5b6b79;
+    text-align: center;
+}
+
+
+/* --------------------------------------------------------------------------
+   8. Unified Enquiry page layout
+   -------------------------------------------------------------------------- */
+
+#enquiry-main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+#enquiry-main h2 {
+    flex: 1 1 100%; /* heading spans the full width, above the two columns */
+}
+
+#enquiry-form {
+    flex: 2 1 320px;
+}
+
+#enquiry-details {
+    flex: 1 1 260px;
+    align-self: flex-start;
+    background-color: #0b1f3a;
+    color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+#enquiry-details h2,
+#enquiry-details h3 {
+    color: #ffffff;
+}
+
+/* Form fields */
+#enquiry-form label {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-bottom: 0.25rem;
+}
+
+#enquiry-form input,
+#enquiry-form textarea {
+    width: 100%;
+    max-width: 25rem; /* 400px */
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #dfe6ec;
+    border-radius: 6px;
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 0.95rem;
+    background-color: #ffffff;
+}
+
+
+/* --------------------------------------------------------------------------
+   9. Visual styles for buttons and links
+   -------------------------------------------------------------------------- */
+
+#enquiry-form input[type="submit"] {
+    width: auto;
+    background-color: #f5a623;
+    color: #0b1f3a;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 700;
+    border: none;
+    padding: 0.75rem 1.75rem;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(11, 31, 58, 0.15);
+}
+
+
+/* --------------------------------------------------------------------------
+   10. Pseudo-classes: hover, focus, active
+   -------------------------------------------------------------------------- */
+
+nav a:hover,
+nav a:focus {
+    border-bottom-color: #f5a623;
+    color: #f5a623;
+}
+
+main p a:hover,
+main p a:focus {
+    color: #f5a623;
+}
+
+#enquiry-form input:focus,
+#enquiry-form textarea:focus {
+    outline: none;
+    border-color: #f5a623;
+    box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.25);
+}
+
+#enquiry-form input[type="submit"]:hover {
+    background-color: #d98e14;
+}
+
+#enquiry-form input[type="submit"]:active {
+    transform: translateY(1px);
+}
+
+
+/* --------------------------------------------------------------------------
+   11. Responsive Design - breakpoints and media queries
+
+   Breakpoints used:
+   - Tablet: screens up to 48rem (768px)
+   - Mobile: screens up to 30rem (480px)
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 48rem) {
+
+    /* Nav stacks vertically on tablets and below */
+    nav ul {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    /* Gallery drops from 3 columns to roughly 2 */
+    #gallery figure {
+        flex-basis: 45%;
+    }
+
+    /* Service sections stack the photo above the text instead of side by side */
+    #electrical-repairs,
+    #installations,
+    #solar-power {
+        flex-direction: column;
+    }
+
+    /* flex-basis applies to the vertical axis once flex-direction is column,
+       so it is reset to auto here to stop the photo and text block taking up
+       extra blank height */
+    #electrical-repairs img,
+    #installations img,
+    #solar-power img,
+    #electrical-repairs div,
+    #installations div,
+    #solar-power div {
+        flex: 1 1 auto;
+    }
+
+    #electrical-repairs img,
+    #installations img,
+    #solar-power img {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Contact form and details stack instead of sitting side by side */
+    #enquiry-main {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 30rem) {
+
+    /* Slightly smaller base font size on phones */
+    html {
+        font-size: 93.75%; /* 15px */
+    }
+
+    header h1 {
+        font-size: 1.35rem;
+    }
+
+    /* Gallery becomes a single column on small phones */
+    #gallery figure {
+        flex-basis: 100%;
+    }
+
+    #gallery-preview figure {
+        flex: 1 1 100%;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   12. Part 3 — JavaScript enhancements, accessibility and SEO support
+   -------------------------------------------------------------------------- */
+nav a[aria-current="page"] {
+    border-bottom-color: #f5a623;
+    color: #f5a623;
+}
+:focus-visible {
+    outline: 3px solid #f5a623;
+    outline-offset: 3px;
+}
+.gallery-controls {
+    max-width: 68.75rem;
+    margin: 0 auto 1rem;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem;
+}
+.gallery-controls button {
+    border: 1px solid #0b1f3a;
+    border-radius: 999px;
+    padding: 0.55rem 1rem;
+    background: #ffffff;
+    color: #0b1f3a;
+    font: 600 0.9rem 'Montserrat', Arial, sans-serif;
+    cursor: pointer;
+}
+.gallery-controls button:hover,
+.gallery-controls button.is-active {
+    background: #0b1f3a;
+    color: #ffffff;
+}
+.gallery-controls p {
+    flex-basis: 100%;
+    margin: 0;
+    color: #5b6b79;
+    font-size: 0.9rem;
+}
+#gallery figure[hidden] {
+    display: none;
+}
+#service-faq details {
+    padding: 1rem 0;
+    border-bottom: 1px solid #dfe6ec;
+}
+#service-faq summary {
+    color: #0b1f3a;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: color 180ms ease, padding-left 180ms ease;
+}
+#service-faq summary:hover,
+#service-faq summary:focus-visible {
+    padding-left: 0.3rem;
+    color: #b36d00;
+}
+#service-faq details[open] > :not(summary) {
+    animation: faq-answer-enter 240ms ease both;
+}
+@keyframes faq-answer-enter {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+#service-faq details p {
+    margin: 0.75rem 0 0;
+}
+.form-status {
+    max-width: 32rem;
+    margin-top: 1rem;
+    padding: 0;
+    border-radius: 6px;
+}
+.form-status.is-success {
+    padding: 0.85rem 1rem;
+    border: 1px solid #39805b;
+    background: #edf8f1;
+    color: #174c31;
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Part 3 additions: discovery tools, lightbox, dynamic content and motion. */
+.services-tools {
+    max-width: 68.75rem;
+    margin: 0 auto 1.5rem;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem 0.85rem;
+    background: #ffffff;
+    border: 1px solid #dfe6ec;
+    border-radius: 8px;
+}
+.services-tools label {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+.services-tools input,
+.services-tools select {
+    min-height: 2.7rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #aab7c4;
+    border-radius: 6px;
+    background: #fff;
+    color: #10192b;
+    font: inherit;
+}
+.services-tools input[type="search"] {
+    flex: 1 1 18rem;
+}
+.services-tools p {
+    flex-basis: 100%;
+    margin: 0;
+    color: #5b6b79;
+    font-size: 0.9rem;
+}
+#services-main > section[hidden] {
+    display: none;
+}
+#power-tips > p {
+    padding: 0 1.5rem;
+}
+.tips-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.tip-card {
+    flex: 1 1 220px;
+    padding: 1.2rem;
+    border: 1px solid #dfe6ec;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(11, 31, 58, 0.06);
+}
+.tip-card p:last-child {
+    margin-bottom: 0;
+}
+#gallery figure img[role="button"] {
+    cursor: zoom-in;
+}
+#gallery-lightbox {
+    width: min(94vw, 1000px);
+    max-width: none;
+    max-height: 92vh;
+    margin: auto;
+    padding: 1rem;
+    color: #10192b;
+    border: 1px solid #dfe6ec;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 18px 70px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+    transition: opacity 220ms ease, transform 260ms cubic-bezier(0.2, 0.7, 0.2, 1),
+        display 220ms allow-discrete, overlay 220ms allow-discrete;
+    transition-behavior: allow-discrete;
+}
+#gallery-lightbox[open] {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+#gallery-lightbox[open].is-closing {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+    pointer-events: none;
+}
+@starting-style {
+    #gallery-lightbox[open] {
+        opacity: 0;
+        transform: translateY(16px) scale(0.97);
+    }
+}
+#gallery-lightbox::backdrop {
+    background: rgba(5, 17, 32, 0);
+    backdrop-filter: blur(0);
+    transition: background-color 220ms ease, backdrop-filter 220ms ease,
+        display 220ms allow-discrete, overlay 220ms allow-discrete;
+    transition-behavior: allow-discrete;
+}
+#gallery-lightbox[open]::backdrop {
+    background: rgba(5, 17, 32, 0.82);
+    backdrop-filter: blur(3px);
+}
+#gallery-lightbox[open].is-closing::backdrop {
+    background: rgba(5, 17, 32, 0);
+    backdrop-filter: blur(0);
+}
+@starting-style {
+    #gallery-lightbox[open]::backdrop {
+        background: rgba(5, 17, 32, 0);
+        backdrop-filter: blur(0);
+    }
+}
+.lightbox-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.lightbox-toolbar p {
+    margin: 0;
+    font-weight: 700;
+}
+.lightbox-toolbar button,
+.lightbox-image-wrap button {
+    border: 0;
+    border-radius: 6px;
+    padding: 0.65rem 0.9rem;
+    background: #0b1f3a;
+    color: #fff;
+    font: 600 0.9rem 'Montserrat', Arial, sans-serif;
+    cursor: pointer;
+}
+.lightbox-image-wrap {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.7rem;
+    margin-top: 0.8rem;
+}
+#lightbox-image {
+    width: 100%;
+    max-height: 72vh;
+    object-fit: contain;
+    background: #e8edf2;
+}
+.location-map {
+    display: block;
+    width: 100%;
+    min-height: 15rem;
+    margin-top: 1rem;
+    border: 0;
+    border-radius: 8px;
+    background: #e8edf2;
+}
+/* Content stays visible if JavaScript is disabled; reveal animation is progressive enhancement. */
+.js-ready .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 420ms ease, transform 420ms ease;
+}
+.js-ready .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+@media (max-width: 30rem) {
+    .services-tools input[type="search"],
+    .services-tools select {
+        flex-basis: 100%;
+        width: 100%;
+    }
+    .lightbox-image-wrap {
+        grid-template-columns: 1fr 1fr;
+    }
+    .lightbox-image-wrap #lightbox-image {
+        grid-column: 1 / -1;
+        grid-row: 1;
+    }
+    .lightbox-image-wrap #lightbox-prev,
+    .lightbox-image-wrap #lightbox-next {
+        grid-row: 2;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .js-ready .reveal,
+    .js-ready .reveal.is-visible {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+
+/* SEO semantic brand wordmark (the page content owns the single H1). */
+.brand-name {
+    max-width: 68.75rem;
+    margin: 0 auto 0.5rem;
+    color: #ffffff;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+@media (max-width: 30rem) {
+    .brand-name { font-size: 1.35rem; }
+}
+
+#gallery > h2 {
+    flex: 1 1 100%;
+}
+
+/* Distinct enquiry/contact form controls and response messaging. */
+#enquiry-form select,
+#enquiry-form input,
+#enquiry-form textarea {
+    margin-bottom: 0.35rem;
+}
+#enquiry-form select {
+    width: 100%;
+    max-width: 25rem;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #dfe6ec;
+    border-radius: 6px;
+    background: #fff;
+    color: #10192b;
+    font: 0.95rem 'Open Sans', Arial, sans-serif;
+}
+.form-submit {
+    display: inline-block;
+    width: auto;
+    border: 0;
+    border-radius: 999px;
+    padding: 0.75rem 1.75rem;
+    background: #f5a623;
+    color: #0b1f3a;
+    font: 700 0.95rem 'Montserrat', Arial, sans-serif;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(11, 31, 58, 0.15);
+}
+.form-submit:hover { background: #d98e14; }
+.form-submit:active { transform: translateY(1px); }
+.form-submit:disabled { cursor: wait; opacity: 0.7; }
+.form-status.is-error {
+    padding: 0.85rem 1rem;
+    border: 1px solid #a33b32;
+    border-radius: 6px;
+    background: #fff2f0;
+    color: #70251f;
+}
+.form-intro {
+    max-width: 68.75rem;
+    margin: 0 auto 1rem;
+    padding: 0 1.5rem;
+}
+.enquiry-response {
+    max-width: 32rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-left: 4px solid #f5a623;
+    border-radius: 4px;
+    background: #fff8eb;
+}
