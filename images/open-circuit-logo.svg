@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Open Circuit electric bolt mark</title>
+  <circle cx="32" cy="32" r="29" fill="#f5a623" stroke="#ffffff" stroke-width="2.5"/>
+  <path d="M36.5 8.5 17.8 34h12.6l-2.7 21.5L46.2 29H33.5z" fill="#0b1f3a" stroke="#0b1f3a" stroke-linejoin="round" stroke-width="1.5"/>
+  <circle cx="32" cy="32" r="29" fill="none" stroke="#f5a623" stroke-width="1" opacity=".6"/>
+</svg>
