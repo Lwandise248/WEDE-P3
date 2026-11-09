@@ -1186,3 +1186,10 @@ nav a {
     background: #d98e14;
 }
 
+/* --------------------------------------------------------------------------
+   15. Leaflet interactive map (enquiry page)
+   -------------------------------------------------------------------------- */
+#location-map {
+    height: 22rem;
+    min-height: 15rem;
+    isolation: isolate; /* keeps Leaflet's internal layers below the back-to-top button */
