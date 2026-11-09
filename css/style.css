@@ -265,3 +265,41 @@ footer p {
 }
 
 
+   6. Services page layout (services.html)
+   -------------------------------------------------------------------------- */
+
+/* Each service section places its photo beside the text using Flexbox.
+   #installations is reversed so the photo alternates sides down the page -
+   this shows the cascade letting a shared rule be adjusted per selector. */
+#electrical-repairs,
+#installations,
+#solar-power {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+#installations {
+    flex-direction: row-reverse;
+}
+
+#electrical-repairs img,
+#installations img,
+#solar-power img {
+    flex: 1 1 260px;
+    max-width: 22.5rem; /* 360px */
+    min-height: 14rem; /* reserves space until real photos are added */
+    object-fit: cover;
+    background-color: #e5eaf0;
+    border-radius: 8px;
+}
+
+#electrical-repairs div,
+#installations div,
+#solar-power div {
+    flex: 2 1 300px;
+}
+
+
+/* --------------------------------------------------------------------------
