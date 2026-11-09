@@ -178,3 +178,66 @@ footer p {
    4. Home page layout (index.html)
    -------------------------------------------------------------------------- */
 
+/* Service summary cards and testimonials use Flexbox with wrapping, so the
+   number of columns adjusts automatically as the screen gets narrower */
+#services-overview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+#services-overview h2 {
+    flex: 1 1 100%; /* heading spans the full row, above the cards */
+}
+
+#testimonials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+#testimonials h2 {
+    flex: 1 1 100%;
+}
+
+#services-overview article,
+#testimonials article {
+    flex: 1 1 220px;
+    background-color: #ffffff;
+    border: 1px solid #dfe6ec;
+    border-radius: 8px;
+    padding: 1.25rem;
+    box-shadow: 0 2px 8px rgba(11, 31, 58, 0.06);
+}
+
+/* Gallery preview on the home page: figures sit in a row using Flexbox */
+#gallery-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+#gallery-preview figure {
+    flex: 1 1 220px;
+    background-color: #ffffff;
+    border: 1px solid #dfe6ec;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#gallery-preview img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+#gallery-preview figcaption {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+    color: #5b6b79;
+    text-align: center;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. About page layout (about.html)
