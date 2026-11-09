@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquiries &amp; Contact | Open Circuit Durban</title>
+    <meta name="description" content="Contact Open Circuit Electrical and Solar in Glenwood, Durban about services or general messages, and view the local area map.">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="contact electrician Durban, service enquiry Durban, general message electrical contractor, solar quote Durban">
+    <meta property="og:site_name" content="Open Circuit Electrical and Solar">
+    <meta property="og:locale" content="en_ZA">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Enquiries &amp; Contact | Open Circuit Durban">
+    <meta name="twitter:description" content="Contact Open Circuit Electrical and Solar in Glenwood, Durban about services or general messages, and view the local area map.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Enquiries &amp; Contact | Open Circuit Durban">
+    <meta property="og:description" content="Contact Open Circuit Electrical and Solar in Glenwood, Durban about services or general messages, and view the local area map.">
+    <meta name="theme-color" content="#0b1f3a">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <a class="brand-lockup" href="index.html" aria-label="Open Circuit Electrical and Solar home">
+            <img class="brand-mark" src="images/open-circuit-logo.svg" alt="" width="56" height="56" fetchpriority="high">
+            <span class="brand-name">Open Circuit Electrical and Solar</span>
+        </a>
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="enquiry.html">Enquiry</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main id="enquiry-main">
+        <h1>Electrical Enquiries and Contact</h1>
+        <p class="form-intro">Use this form for service, product, availability, sponsorship or volunteer enquiries, and for general messages. Choose the closest message type below.</p>
+        <figure class="enquiry-photo">
+            <img src="images/GoingSolar.jpg" alt="Two Open Circuit technicians in hard hats reviewing a solar panel installation" width="800" height="533" loading="lazy">
+        </figure>
+        <section id="enquiry-form" aria-labelledby="enquiry-heading">
+            <h2 id="enquiry-heading">Send a Message or Enquiry</h2>
+            <form id="service-enquiry-form" data-form-kind="enquiry" action="https://docs.google.com/forms/d/e/1FAIpQLSfBtQKgd2iUtmg_TaU6xxTDXfjkcStd2sMIVsXGj_lyd9ctAg/formResponse" method="post">
+                <label for="enquiry-name">Full name</label><br>
+                <input type="text" id="enquiry-name" name="name" autocomplete="name" minlength="2" maxlength="80" required><br><br>
+
+                <label for="enquiry-email">Email address</label><br>
+                <input type="email" id="enquiry-email" name="email" autocomplete="email" maxlength="120" required><br><br>
+
+                <label for="enquiry-phone">Phone number (optional)</label><br>
+                <input type="tel" id="enquiry-phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="082 123 4567" aria-describedby="enquiry-phone-help">
+                <small id="enquiry-phone-help">If supplied, use a South African number.</small><br><br>
+
+                <label for="enquiry-category">What would you like to contact us about?</label><br>
+                <select id="enquiry-category" name="category" required>
+                    <option value="">Choose a message type</option>
+                    <option value="general">General question or feedback</option>
+                    <option value="electrical-repairs">Electrical repairs or rewiring</option>
+                    <option value="installation">Installations or DB board upgrade</option>
+                    <option value="solar">Solar panels or installation</option>
+                    <option value="backup">Battery or backup power</option>
+                    <option value="product">A product or equipment</option>
+                    <option value="sponsorship">Sponsorship or volunteering</option>
+                    <option value="other">Other service enquiry</option>
+                </select><br><br>
+
+                <label for="enquiry-location">Project area (if relevant)</label><br>
+                <input type="text" id="enquiry-location" name="location" autocomplete="address-level2" maxlength="100" placeholder="e.g. Glenwood, Durban"><br><br>
+
+                <label for="enquiry-message">Tell us what you would like to know</label><br>
+                <textarea id="enquiry-message" name="message" rows="5" maxlength="1000" minlength="10" required placeholder="Describe the work, product question, general message, or opportunity you are asking about." aria-describedby="enquiry-message-count"></textarea><br>
+                <small id="enquiry-message-count" aria-live="polite">0/1000 characters</small><br><br>
+
+                <button type="submit" class="form-submit">Send Message or Enquiry</button>
+                <p id="enquiry-status" class="form-status" role="status" tabindex="-1" aria-live="polite"></p>
+                <div id="enquiry-response" class="enquiry-response" hidden aria-live="polite"></div>
+            </form>
+        </section>
+        <section id="enquiry-details" aria-labelledby="enquiry-details-heading">
+            <h2 id="enquiry-details-heading">Contact and Location</h2>
+            <p><strong>Area:</strong> Glenwood, Durban</p>
+            <p><strong>Phone:</strong> <a href="tel:+27820000000">082 000 0000</a></p>
+            <p><strong>Hours:</strong> Mon–Sat, 07:00–17:00</p>
+            <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Glenwood%2C%20Durban" target="_blank" rel="noopener noreferrer">Open Glenwood, Durban in Google Maps</a></p>
+            <div id="location-map" class="location-map" role="region" aria-label="Interactive map showing Glenwood, Durban"></div>
+        </section>
+    </main>
+    <footer>
+        <p>Open Circuit Electrical and Solar, Glenwood, Durban</p>
+        <p>Mon-Sat: 07:00-17:00</p>
+        <p>&copy; 2026 Open Circuit Electrical and Solar</p>
+    </footer>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+    <script src="./js/leaflet-map.js" defer></script>
+    <script src="./js/form-config.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" defer></script>
+    <script src="./js/jquery-features.js" defer></script>
+    <script src="./js/site.js" defer></script>
+</body>
+</html>
