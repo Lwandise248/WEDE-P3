@@ -1056,3 +1056,133 @@ nav a {
 
 
 /* --------------------------------------------------------------------------
+#enquiry-main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+        "title title"
+        "intro intro"
+        "photo form"
+        "photo details";
+    gap: 1.5rem 2rem;
+    align-items: start;
+    max-width: 68.75rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+#enquiry-main > h1 {
+    grid-area: title;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+#enquiry-main > .form-intro {
+    grid-area: intro;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+#enquiry-main > #enquiry-form {
+    grid-area: form;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+#enquiry-main > #enquiry-details {
+    grid-area: details;
+    max-width: none;
+    margin: 0;
+}
+
+/* Photo with a fixed height: change the height value below to resize it */
+#enquiry-main > .enquiry-photo {
+    grid-area: photo;
+    align-self: start;
+    margin: 0;
+}
+
+#enquiry-main .enquiry-photo img {
+    display: block;
+    width: 100%;
+    height: 620px;
+    object-fit: cover;
+    object-position: 75% 75%;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(11, 31, 58, 0.15);
+}
+
+@media (max-width: 48rem) {
+    #enquiry-main {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "title"
+            "intro"
+            "photo"
+            "form"
+            "details";
+    }
+
+    #enquiry-main .enquiry-photo img {
+        height: 280px;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   14. jQuery features: tabs (about page) and back-to-top button (all pages)
+   -------------------------------------------------------------------------- */
+.tab-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+.tab-list [role="tab"] {
+    border: 1px solid #0b1f3a;
+    border-radius: 999px;
+    padding: 0.55rem 1.1rem;
+    background: #ffffff;
+    color: #0b1f3a;
+    font: 600 0.9rem 'Montserrat', Arial, sans-serif;
+    cursor: pointer;
+    transition: background-color 180ms ease, color 180ms ease;
+}
+.tab-list [role="tab"]:hover,
+.tab-list [role="tab"].is-active {
+    background: #0b1f3a;
+    color: #ffffff;
+}
+[role="tabpanel"] {
+    padding: 1.25rem;
+    background: #ffffff;
+    border: 1px solid #dfe6ec;
+    border-radius: 8px;
+}
+[role="tabpanel"] p:last-child {
+    margin-bottom: 0;
+}
+[role="tabpanel"][hidden] {
+    display: none;
+}
+.back-to-top {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    width: 3rem;
+    height: 3rem;
+    border: 0;
+    border-radius: 50%;
+    background: #f5a623;
+    color: #0b1f3a;
+    font: 700 1.3rem 'Montserrat', Arial, sans-serif;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(11, 31, 58, 0.25);
+    z-index: 50;
+}
+.back-to-top:hover {
+    background: #d98e14;
+}
+
