@@ -13,3 +13,168 @@
    - Borders/lines: #dfe6ec
 
    Fonts: Montserrat for headings, Open Sans for body text.
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. CSS Reset / Base styles
+   -------------------------------------------------------------------------- */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 100%; /* 1rem = 16px, used as the base for all relative sizing */
+}
+
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #10192b;
+    background-color: #f7f9fb;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: #0b1f3a;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. Typography
+   -------------------------------------------------------------------------- */
+
+h1, h2, h3, h4 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    color: #0b1f3a;
+    margin-bottom: 0.75rem;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
+
+h3 {
+    font-size: 1.15rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+/* Links inside paragraphs get a visible underline so they read as clickable */
+main p a {
+    color: #0b1f3a;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. Layout
+   -------------------------------------------------------------------------- */
+
+/* Header is a full-width navy band; its children are centred using a max-width,
+   which keeps the markup simple (no extra wrapper div needed) */
+header {
+    background-color: #0b1f3a;
+    color: #ffffff;
+    padding: 1.5rem 1.5rem 1rem;
+}
+
+header h1,
+header p,
+header nav {
+    max-width: 68.75rem; /* 1100px, in rem for relative sizing */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header h1 {
+    color: #ffffff;
+    font-size: 1.6rem;
+}
+
+header > p {
+    color: #d8e0ea;
+    margin-bottom: 1rem;
+}
+
+/* Nav uses Flexbox to lay the links out in a row */
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+nav a {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #ffffff;
+    padding-bottom: 0.25rem;
+    border-bottom: 2px solid transparent;
+}
+
+/* Every direct section inside <main> is centred the same way as the header */
+main > section,
+main > h1,
+main > h2,
+main > p {
+    max-width: 68.75rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1.5rem;
+}
+
+main {
+    padding: 2rem 0;
+}
+
+main > section {
+    margin-bottom: 2.5rem;
+}
+
+/* Footer matches the header styling for a consistent top-and-bottom band */
+footer {
+    background-color: #0b1f3a;
+    color: #c7d1dc;
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+footer p {
+    max-width: 68.75rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* --------------------------------------------------------------------------
+   4. Home page layout (index.html)
+   -------------------------------------------------------------------------- */
+
