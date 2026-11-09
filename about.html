@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Open Circuit Electrical | Durban</title>
+    <meta name="description" content="Learn about Open Circuit Electrical and Solar, a Glenwood-based electrical contractor serving homes and businesses across Durban.">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="electrical contractor Glenwood, electrician Durban, solar contractor Durban">
+    <meta property="og:site_name" content="Open Circuit Electrical and Solar">
+    <meta property="og:locale" content="en_ZA">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="About Open Circuit Electrical | Durban">
+    <meta name="twitter:description" content="Learn about Open Circuit Electrical and Solar, a Glenwood-based electrical contractor serving homes and businesses across Durban.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="About Open Circuit Electrical | Durban">
+    <meta property="og:description" content="Learn about Open Circuit Electrical and Solar, a Glenwood-based electrical contractor serving homes and businesses across Durban.">
+    <meta name="theme-color" content="#0b1f3a">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!--Google Fonts: Montserrat for headings, Open Sans for body text-->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+    <!--link to the external stylesheet, shared by every page-->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!--header: top of the page, contains the business name and main navigation-->
+    <header>
+
+        <a class="brand-lockup" href="index.html" aria-label="Open Circuit Electrical and Solar home">
+            <img class="brand-mark" src="images/open-circuit-logo.svg" alt="" width="56" height="56" fetchpriority="high">
+            <span class="brand-name">Open Circuit Electrical and Solar</span>
+        </a>
+        <!--nav: main navigation menu, links to the other pages-->
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="enquiry.html">Enquiry</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <!--main: the main content of the page-->
+    <main id="about-main">
+
+        <h1>About Open Circuit Electrical and Solar</h1>
+
+        <!--section: the story of the business-->
+        <section id="our-story">
+            <h2>Our Story</h2>
+            <p>
+                Open Circuit Electrical and Solar is a Durban-based electrical
+                contracting business, operating out of Glenwood. What began as
+                general electrical repair and installation work has grown to
+                include solar and backup power systems, driven by rising demand
+                from load-shedding.
+            </p>
+            <p>
+                The business is known locally for neat, reliable workmanship and
+                clear communication with every client.
+            </p>
+        </section>
+
+        <!--section: the mission statement-->
+        <section id="our-mission">
+            <h2>Our Mission</h2>
+            <p>
+                To deliver safe, professional electrical and solar installations
+                that give homeowners and businesses dependable power and peace
+                of mind.
+            </p>
+        </section>
+
+        <!--section: reasons to choose the business, shown in a table-->
+        <section id="why-choose-us">
+            <h2>Why Choose Us</h2>
+
+            <table border="1">
+                <tr>
+                    <th scope="col">Reason</th>
+                    <th scope="col">What It Means</th>
+                </tr>
+                <tr>
+                    <td>Safe</td>
+                    <td>Every job follows proper safety practice.</td>
+                </tr>
+                <tr>
+                    <td>Neat</td>
+                    <td>Tidy, careful workmanship on every site.</td>
+                </tr>
+                <tr>
+                    <td>Clear</td>
+                    <td>Upfront quotes and plain explanations.</td>
+                </tr>
+                <tr>
+                    <td>Local</td>
+                    <td>Based in Glenwood, serving all of Durban.</td>
+                </tr>
+            </table>
+        </section>
+
+        <!--section: tabs built with jQuery (js/jquery-features.js)-->
+        <section id="our-approach" aria-labelledby="approach-heading">
+            <h2 id="approach-heading">Our Approach</h2>
+            <div class="tabs">
+                <div class="tab-list" role="tablist" aria-label="Our approach">
+                    <button type="button" role="tab" id="tab-safety" aria-controls="panel-safety">Safety</button>
+                    <button type="button" role="tab" id="tab-quality" aria-controls="panel-quality">Quality</button>
+                    <button type="button" role="tab" id="tab-clarity" aria-controls="panel-clarity">Communication</button>
+                </div>
+                <div id="panel-safety" role="tabpanel" aria-labelledby="tab-safety">
+                    <p>Every job follows proper safety practice, from the first inspection to the final test.</p>
+                </div>
+                <div id="panel-quality" role="tabpanel" aria-labelledby="tab-quality" hidden>
+                    <p>Tidy, careful workmanship on every site, whether it is a small repair or a full installation.</p>
+                </div>
+                <div id="panel-clarity" role="tabpanel" aria-labelledby="tab-clarity" hidden>
+                    <p>Upfront quotes and plain explanations, so you know what is being done and why.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!--footer: bottom of the page, contact details and copyright-->
+    <footer>
+        <p>Open Circuit Electrical and Solar, Glenwood, Durban</p>
+        <p>Mon-Sat: 07:00-17:00</p>
+        <p>&copy; 2026 Open Circuit Electrical and Solar</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" defer></script>
+    <script src="./js/jquery-features.js" defer></script>
+    <script src="./js/site.js" defer></script>
+</body>
+</html>
