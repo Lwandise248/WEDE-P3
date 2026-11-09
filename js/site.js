@@ -282,3 +282,118 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Google Forms delivery: posts to the form's formResponse URL in the background.
+            // The browser cannot read Google's reply (no-cors), so success is assumed if the request is sent.
+            const gf = config.googleForm;
+            if (gf && /^https:\/\/docs\.google\.com\/forms\//i.test(gf.url)) {
+                const submit = form.querySelector('[type="submit"]');
+                if (submit) { submit.disabled = true; submit.dataset.originalLabel = submit.textContent || submit.value; submit.textContent = 'Sending…'; }
+                const pick = (...selectors) => {
+                    for (const selector of selectors) {
+                        const el = form.querySelector(selector);
+                        if (el && el.value.trim()) return el.value.trim();
+                    }
+                    return '';
+                };
+                const topicKey = categoryField ? category : 'general';
+                const data = new URLSearchParams();
+                data.append(gf.fields.name, pick('[name="name"]', '[autocomplete="name"]', '[name*="name" i]'));
+                data.append(gf.fields.email, pick('[type="email"]'));
+                data.append(gf.fields.phone, pick('[type="tel"]'));
+                data.append(gf.fields.topic, gf.topics[topicKey] || gf.topics.other);
+                data.append(gf.fields.area, pick('[name="area"]', '[name="project-area"]', '[name="project_area"]', '[name="location"]') || 'Not provided');
+                data.append(gf.fields.message, message ? message.value.trim() : '');
+                try {
+                    await fetch(gf.url, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: data
+                    });
+                    if (status) {
+                        status.textContent = 'Thank you for your enquiry. Your details have been received, and we will contact you as soon as possible.';
+                        status.classList.add('is-success'); status.focus();
+                    }
+                    form.reset(); counterUpdate();
+                } catch (error) {
+                    if (status) { status.textContent = 'We could not submit this form. Your message has not been confirmed as sent. Please try again or use the phone contact shown on this page.'; status.classList.add('is-error'); status.focus(); }
+                } finally {
+                    if (submit) { submit.disabled = false; submit.textContent = submit.dataset.originalLabel || 'Send'; }
+                }
+                return;
+            }
+
+            if (typeof config.endpoint === 'string' && /^https:\/\//i.test(config.endpoint)) {
+                const submit = form.querySelector('[type="submit"]');
+                if (submit) { submit.disabled = true; submit.dataset.originalLabel = submit.textContent || submit.value; submit.textContent = 'Sending…'; }
+                try {
+                    const result = await fetch(config.endpoint, {
+                        method: 'POST',
+                        headers: { Accept: 'application/json' },
+                        body: new FormData(form)
+                    });
+                    if (!result.ok) throw new Error(`Submission failed (${result.status}).`);
+                    let payload = {};
+                    try { payload = await result.json(); } catch (_) { /* successful non-JSON response */ }
+                    if (status) {
+                        status.textContent = 'Thank you for your enquiry. Your details have been received, and we will contact you as soon as possible.';
+                        status.classList.add('is-success'); status.focus();
+                    }
+                    if (payload.reply && response) response.textContent = String(payload.reply);
+                    form.reset(); counterUpdate();
+                } catch (error) {
+                    if (status) { status.textContent = 'We could not submit this form. Your message has not been confirmed as sent. Please try again or use the phone contact shown on this page.'; status.classList.add('is-error'); status.focus(); }
+                } finally {
+                    if (submit) { submit.disabled = false; submit.textContent = submit.dataset.originalLabel || 'Send'; }
+                }
+                return;
+            }
+
+            const recipient = typeof config.recipientEmail === 'string' ? config.recipientEmail.trim() : '';
+            const recipientIsConfigured = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipient) && !/example\.(com|org|net)$/i.test(recipient);
+            if (recipientIsConfigured) {
+                const subject = encodeURIComponent(`${categoryField?.selectedOptions[0]?.text || 'General enquiry'}: Open Circuit website`);
+                const body = encodeURIComponent([...new FormData(form).entries()].map(([key, value]) => `${key}: ${value}`).join('\n'));
+                window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+                if (status) { status.textContent = 'Your email app should open with the details filled in. Review and press Send there; this website cannot confirm delivery.'; status.classList.add('is-success'); status.focus(); }
+            } else if (status) {
+                status.textContent = 'The form passed validation, but it has NOT been sent. The site owner must configure a secure form endpoint or the organisation’s actual recipient email in js/form-config.js before messages can be delivered.';
+                status.classList.add('is-error'); status.focus();
+            }
+        });
+        if (phone) phone.addEventListener('input', () => phone.setCustomValidity(''));
+        if (message) message.addEventListener('input', () => message.setCustomValidity(''));
+    });
+
+    // Smooth page-entry and staggered reveal motion. Keep content visible without motion/JS support.
+    const revealItems = document.querySelectorAll('main > section, #services-main section[id], #gallery figure');
+    revealItems.forEach((item, index) => {
+        item.classList.add('reveal');
+        item.style.setProperty('--reveal-delay', `${Math.min(index % 5, 4) * 75}ms`);
+    });
+    if (motionOK && currentFile === 'index.html') {
+        document.querySelector('#home-main')?.classList.add('home-entry');
+    }
+    if (motionOK && 'IntersectionObserver' in window) {
+        const pendingReveal = new Set();
+        let revealFrame = 0;
+        const observer = new IntersectionObserver((entries, activeObserver) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    pendingReveal.add(entry.target);
+                    activeObserver.unobserve(entry.target);
+                }
+            });
+            if (pendingReveal.size && !revealFrame) {
+                revealFrame = requestAnimationFrame(() => {
+                    pendingReveal.forEach((item) => item.classList.add('is-visible'));
+                    pendingReveal.clear();
+                    revealFrame = 0;
+                });
+            }
+        }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+        revealItems.forEach((item) => observer.observe(item));
+        document.querySelectorAll('#tips-list .reveal').forEach((item) => observer.observe(item));
+    } else {
+        document.querySelectorAll('.reveal').forEach((item) => item.classList.add('is-visible'));
+    }
+});
